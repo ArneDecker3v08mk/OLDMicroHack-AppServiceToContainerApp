@@ -32,7 +32,7 @@ jobs:
         with:
           tenant: ${{ secrets.tenant }}
           registry: microhackregistry
-          service_principal: microhack-sp
+          service_principal: 6b88bd20-2379-48ee-bab0-c87d988376f4
           service_principal_password: ${{ secrets.service_principal_password }}
           dockerfile: ./Dockerfile
           repository: microhackapp
