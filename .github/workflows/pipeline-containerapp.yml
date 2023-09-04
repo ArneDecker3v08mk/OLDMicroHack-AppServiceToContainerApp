@@ -26,3 +26,15 @@ jobs:
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
+
+      - name: Build and push image
+        uses: azure/acr-build@v1
+        with:
+          tenant: ${{ secrets.tenant }}
+          registry: microhackregistry
+          service_principal: microhack-sp
+          service_principal_password: ${{ secrets.service_principal_password }}
+          dockerfile: ./Dockerfile
+          repository: microhackapp
+          image: microhackapp-containerimage
+          
