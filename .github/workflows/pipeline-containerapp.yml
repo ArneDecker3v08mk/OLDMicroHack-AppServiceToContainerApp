@@ -35,7 +35,7 @@ jobs:
           service_principal: ${{ secrets.service_principal }}
           service_principal_password: ${{ secrets.service_principal_password }}
           dockerfile: ./Dockerfile
-          repository: microhackapp
+          repository: microhackregistry.azurecr.io
           image: microhackapp-containerimage
           git_access_token: ${{ secrets.git_access_token }}
           
