@@ -29,6 +29,6 @@ jobs:
 
       - name: Build and Push Image
         run: |
-          docker login microhackregistry.azure.io -u "microhackregistry" -p "em8rqvi7aecol6d+kXnw6qe7zGq4bHOoH3yleYFrVn+ACRBgV7Qw"
-          docker build -t microhackapp -f Dockerfile
+          docker login microhackregistry.azure.io -u "microhackregistry" -p "em8rqvi7aecol6d+kXnw6qe7zGq4bHOoH3yleYFrVn+ACRBgV7Qw" &&
+          docker build -t microhackapp -f Dockerfile . &&
           docker push microhackregistry.azurecr.io/microhackapp
