@@ -30,9 +30,21 @@ jobs:
       - name: Build and Push Image
         run: |
           echo "${{ secrets.ACR_PASSWORD }}" | docker login -u "${{ secrets.ACR_USERNAME }}" --password-stdin microhackregistry.azurecr.io &&
-          docker build -t microhackregistry.azurecr.io/microhackapp -f Dockerfile . &&
+          docker build -t microhackregistry.azurecr.io/microhackapp:1 -f Dockerfile . &&
           docker push microhackregistry.azurecr.io/microhackapp:1
         env:
           DOCKER_USERNAME: ${{ secrets.ACR_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.ACR_PASSWORD }}
+
+      - name: Build and push image
+        uses: azure/acr-build@v1
+        with:
+          tenant: ${{ secrets.tenant }}
+          registry: microhackregistry
+          service_principal: ${{ secrets.service_principal }}
+          service_principal_password: ${{ secrets.service_principal_password }}
+          dockerfile: ./Dockerfile
+          repository: microhackapp
+          image: microhackapp-containerimage
+          git_access_token: ${{ secrets.git_access_token }}
 
