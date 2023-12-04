@@ -29,6 +29,10 @@ jobs:
 
       - name: Build and Push Image
         run: |
-          docker login microhackregistry.azure.io -u "microhackregistry" --password-stdin "em8rqvi7aecol6d+kXnw6qe7zGq4bHOoH3yleYFrVn+ACRBgV7Qw" &&
-          docker build -t microhackapp -f Dockerfile . &&
+          echo "${{ secrets.ACR_PASSWORD }}" | docker login -u "${{ secrets.ACR_USERNAME }}" --password-stdin microhackregistry.azure.io &&
+          docker build -t microhackregistry.azurecr.io/microhackapp -f Dockerfile . &&
           docker push microhackregistry.azurecr.io/microhackapp:1
+        env:
+          DOCKER_USERNAME: ${{ secrets.ACR_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.ACR_PASSWORD }}
+
