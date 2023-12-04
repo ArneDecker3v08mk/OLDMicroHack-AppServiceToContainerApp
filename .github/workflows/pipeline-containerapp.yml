@@ -28,11 +28,18 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: Print Secrets
+        env:
+          SECRET_ONE: ${{ secrets.tenant }}
+          SECRET_TWO: ${{ secrets.service_principal }}
+          SECRET_THREE: ${{ secrets.service_principal_password }}
+          SECRET_FOUR: ${{ secrets.git_access_token }}
         run: |
-          echo "Secret 1: ${{ secrets.tenant }}"
-          echo "Secret 2: ${{ secrets.service_principal }}"
-          echo "Secret 3: ${{ secrets.service_principal_password }}"
-          echo "Secret 3: ${{ secrets.git_access_token }}"
+          echo "Secret 1: $SECRET_ONE"
+          echo "Secret 2: $SECRET_TWO"
+          echo "Secret 3: $SECRET_THREE"
+          echo "Secret 3: $SECRET_FOUR"
+          # Add more echo commands for additional secrets as needed
+
         
       - name: Build and push image
         uses: azure/acr-build@v1
