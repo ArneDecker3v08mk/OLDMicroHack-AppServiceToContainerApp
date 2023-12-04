@@ -26,14 +26,6 @@ jobs:
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
-
-      - name: Print Secrets
-        run: |
-          echo "Secret 1 hash: $(echo -n "${{ secrets.tenant }}" | sha256sum)"
-          echo "Secret 1 hash: $(echo -n "${{ secrets.service_principal }}" | sha256sum)"
-          echo "Secret 1 hash: $(echo -n "${{ secrets.service_principal_password }}" | sha256sum)"
-          echo "Secret 1 hash: $(echo -n "${{ secrets.git_access_token }}" | sha256sum)"
-
         
       - name: Build and push image
         uses: azure/acr-build@v1
