@@ -27,11 +27,18 @@ jobs:
       - name: Build with dotnet
         run: dotnet build --configuration Release
 
+      - name: Print Secrets
+        run: |
+          echo "Secret 1: ${{ secrets.tenant }}"
+          echo "Secret 2: ${{ secrets.service_principal }}"
+          echo "Secret 3: ${{ secrets.service_principal_password }}"
+          echo "Secret 3: ${{ secrets.git_access_token }}"
+        
       - name: Build and push image
         uses: azure/acr-build@v1
         with:
           tenant: ${{ secrets.tenant }}
-          registry: microhackregistry.azurecr.io
+          registry: microhackregistry
           service_principal: ${{ secrets.service_principal }}
           service_principal_password: ${{ secrets.service_principal_password }}
           dockerfile: ./Dockerfile
