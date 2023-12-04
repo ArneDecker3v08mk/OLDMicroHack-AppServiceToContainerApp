@@ -26,16 +26,9 @@ jobs:
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
-        
-      - name: Build and push image
-        uses: azure/acr-build@v1
-        with:
-          tenant: ${{ secrets.tenant }}
-          registry: microhackregistry
-          service_principal: ${{ secrets.service_principal }}
-          service_principal_password: ${{ secrets.service_principal_password }}
-          dockerfile: ./Dockerfile
-          repository: microhackapp
-          image: microhackapp-containerimage
-          git_access_token: ${{ secrets.git_access_token }}
-          
+
+      - name: Build and Push Image
+        run: |
+          docker login microhackregistry.azure.io -u "microhackregistry" -p "em8rqvi7aecol6d+kXnw6qe7zGq4bHOoH3yleYFrVn+ACRBgV7Qw"
+          docker build -t microhackapp -f Dockerfile
+          docker push microhackregistry.azurecr.io/microhackapp
