@@ -28,17 +28,11 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: Print Secrets
-        env:
-          SECRET_ONE: ${{ secrets.tenant }}
-          SECRET_TWO: ${{ secrets.service_principal }}
-          SECRET_THREE: ${{ secrets.service_principal_password }}
-          SECRET_FOUR: ${{ secrets.git_access_token }}
         run: |
-          echo "Secret 1: $SECRET_ONE"
-          echo "Secret 2: $SECRET_TWO"
-          echo "Secret 3: $SECRET_THREE"
-          echo "Secret 3: $SECRET_FOUR"
-          # Add more echo commands for additional secrets as needed
+          echo "Secret 1 hash: $(echo -n "${{ secrets.tenant }}" | sha256sum)"
+          echo "Secret 1 hash: $(echo -n "${{ secrets.service_principal }}" | sha256sum)"
+          echo "Secret 1 hash: $(echo -n "${{ secrets.service_principal_password }}" | sha256sum)"
+          echo "Secret 1 hash: $(echo -n "${{ secrets.git_access_token }}" | sha256sum)"
 
         
       - name: Build and push image
