@@ -46,5 +46,4 @@ jobs:
           dockerfile: ./Dockerfile
           repository: microhackapp
           image: microhackapp-containerimage
-          git_access_token: ${{ secrets.git_access_token }}
 
