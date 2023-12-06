@@ -18,4 +18,4 @@ jobs:
         run: az login --service-principal -u ${{ secrets.service_principal }} -p ${{ secrets.service_principal_password }} --tenant ${{ secrets.tenant }}
           
       - name: Roles
-        run: az role assignment list --assignee ${ secrets.service_principal }} --scope /subscriptions/8daf8b4e-005c-443b-9bd5-2ada95fce462/resourceGroups/MicroHack-AppServiceToContainerApp/providers/Microsoft.ContainerRegistry/registries/microhackregistry
+        run: az role assignment list --assignee ${{ secrets.service_principal }} --scope /subscriptions/8daf8b4e-005c-443b-9bd5-2ada95fce462/resourceGroups/MicroHack-AppServiceToContainerApp/providers/Microsoft.ContainerRegistry/registries/microhackregistry
