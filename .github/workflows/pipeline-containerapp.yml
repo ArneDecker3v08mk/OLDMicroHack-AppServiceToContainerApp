@@ -33,8 +33,8 @@ jobs:
       - name: Build and Push Image
         run: |
           echo "${{ secrets.ACR_PASSWORD }}" | docker login -u "${{ secrets.ACR_USERNAME }}" --password-stdin microhackregistry.azurecr.io &&
-          docker build -t microhackregistry.azurecr.io/microhackapp:1 -f Dockerfile . &&
-          docker push microhackregistry.azurecr.io/microhackapp:1
+          docker build -t microhackregistry.azurecr.io/microhackapp:2 -f Dockerfile . &&
+          docker push microhackregistry.azurecr.io/microhackapp:2
         env:
           DOCKER_USERNAME: ${{ secrets.ACR_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.ACR_PASSWORD }}
@@ -42,7 +42,7 @@ jobs:
       - name: Deploy Image
         uses: azure/container-apps-deploy-action@v2
         with:
-          imageToDeploy: microhackregistry.azurecr.io/microhackapp:1
+          imageToDeploy: microhackregistry.azurecr.io/microhackapp:2
           acrUsername: ${{ secrets.ACR_USERNAME }}
           acrPassword: ${{ secrets.ACR_PASSWORD }}
           resourceGroup: MicroHack-AppServiceToContainerApp
