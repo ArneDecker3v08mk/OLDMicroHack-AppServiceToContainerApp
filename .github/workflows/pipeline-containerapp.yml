@@ -45,5 +45,5 @@ jobs:
           service_principal_password: ${{ secrets.service_principal_password }}
           dockerfile: Dockerfile
           repository: microhackapp
-          image: microhackapp-containerimage:2
+          image: microhackapp-containerimage
 
