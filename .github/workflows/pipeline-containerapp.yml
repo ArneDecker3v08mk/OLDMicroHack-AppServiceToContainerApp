@@ -40,7 +40,7 @@ jobs:
         uses: azure/acr-build@v1
         with:
           tenant: ${{ secrets.tenant }}
-          registry: microhackregistry.azurecr.io
+          registry: microhackregistry
           service_principal: ${{ secrets.service_principal }}
           service_principal_password: ${{ secrets.service_principal_password }}
           dockerfile: Dockerfile
