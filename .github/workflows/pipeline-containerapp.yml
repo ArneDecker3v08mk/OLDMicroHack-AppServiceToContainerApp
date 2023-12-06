@@ -35,9 +35,6 @@ jobs:
         env:
           DOCKER_USERNAME: ${{ secrets.ACR_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.ACR_PASSWORD }}
-
-      - name: Login
-        run: az login --service-principal -u ${{ secrets.service_principal }} -p ${{ secrets.service_principal_password }} --tenant ${{ secrets.tenant }}
       
       - name: Build and push image
         uses: azure/acr-build@v1
