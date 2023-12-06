@@ -1,0 +1,21 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: Build and Deploy to Container App
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build and Test Solution
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Login
+        run: |
+          az login --service-principal -u ${{ secrets.service_principal }} -p ${{ secrets.service_principal_password }} --tenant ${{ secrets.tenant }} &&
+          az role assignment list --assignee ${ secrets.service_principal }} --scope /subscriptions/8daf8b4e-005c-443b-9bd5-2ada95fce462/resourceGroups/MicroHack-AppServiceToContainerApp/providers/Microsoft.ContainerRegistry/registries/microhackregistry
