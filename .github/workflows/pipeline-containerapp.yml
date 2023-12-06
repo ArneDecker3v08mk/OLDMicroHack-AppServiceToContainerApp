@@ -43,7 +43,7 @@ jobs:
           registry: microhackregistry
           service_principal: ${{ secrets.service_principal }}
           service_principal_password: ${{ secrets.service_principal_password }}
-          dockerfile: ./Dockerfile
+          dockerfile: Dockerfile
           repository: microhackapp
-          image: microhackapp-containerimage
+          image: microhackapp-containerimage:2
 
