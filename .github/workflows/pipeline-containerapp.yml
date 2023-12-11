@@ -35,6 +35,3 @@ jobs:
           echo "${{ secrets.ACR_PASSWORD }}" | docker login -u "${{ secrets.ACR_USERNAME }}" --password-stdin microhackregistry.azurecr.io &&
           docker build -t microhackregistry.azurecr.io/microhackapp -f Dockerfile . &&
           docker push microhackregistry.azurecr.io/microhackapp
-        env:
-          DOCKER_USERNAME: ${{ secrets.ACR_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.ACR_PASSWORD }}
